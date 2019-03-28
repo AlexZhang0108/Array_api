@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<script>
+
+    function deepClone(obj) {
+        let objClone = Array.isArray(obj) ? [] : {};
+        if (obj && typeof obj === "object") {
+            for (key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    //判断ojb子元素是否为对象，如果是，递归复制
+                    if (obj[key] && typeof obj[key] === "object") {
+                        objClone[key] = deepClone(obj[key]);
+                    } else {
+                        //如果不是，简单复制
+                        objClone[key] = obj[key];
+                    }
+                }
+            }
+        }
+        return objClone;
+    }
+    let a = [1, 2, 3, 4],
+        b = deepClone(a);
+    a[0] = 'zfd';
+    console.log(a, b);
+</script>
+
+
+
+
+
+<!-- <script>
+    let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14, 456, 1217, 55, 55, 666, 88]
+
+
+    // 数组去重
+    // 方法一
+    function disArr(array) {
+        let newArr = [];
+        for (let i = 0; i < array.length; i++) {
+            if (newArr.indexOf(array[i]) === -1) {
+                newArr.push(array[i])
+            }
+        }
+        return newArr
+    }
+
+    let arr1 = disArr(arr)
+
+    console.log(arr1);
+
+    //冒泡排序 
+    function mSort(array) {
+        // 用来存放值
+        let temp;
+        for (let i = 0; i < array.length; i++) {
+            for (let j = 0; j < array.length; j++) {
+                if (array[j] > array[j + 1]) {
+                    temp = array[j + 1]
+                    array[j + 1] = array[j]
+                    array[j] = temp
+                }
+            }
+        }
+        return array
+    }
+
+
+    let arr3 = mSort(arr1)
+    console.log(arr3);
+
+
+
+    // 深浅拷贝
+    let arrcl = [1, 2, 3, 4, 5, 6, 7, {
+        'a': 'a',
+    }, '张飞东', {
+        say: function (res) {
+            alert(res)
+        }
+    }]
+    // 浅拷贝
+    function copy(array) {
+        let ref = []
+        for (let i = 0; i < array.length; i++) {
+            ref[i] = array[i]
+        }
+        return ref
+    }
+
+
+    // 深拷贝
+    function copyS(obj) {
+        let ref = null;
+        if (obj instanceof Array) {
+            ref = [];
+            for (let i = 0; i < obj.length; i++) {
+                ref[i] = copyS(obj[i])
+            }
+            return ref
+        } else if (Object.prototype.toString.call(obj)===['object object']) {
+            ref = {}
+            for (const k in obj) {
+                ref[k] = copyS(obj[k])
+            }
+            return ref
+        }else{
+            return obj
+        }
+    }
+    console.log(arrcl);
+    copy(arrcl[0]='asd')
+    copyS(arrcl[0]='zfd')
+    console.log('---------浅拷贝-------', copy(arrcl));
+    console.log('---------深拷贝-------', copyS(arrcl));
+</script> -->
